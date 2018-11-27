@@ -104,9 +104,9 @@ class App extends Component {
         </button>
       )
     }
-    console.log(`${matchingLetters} is a match`)
-    console.log(generatedWordArray.sort(), 'generated word array')
-    console.log(matchingLetters.sort(), 'matching letters')
+    // console.log(`${matchingLetters} is a match`)
+    // console.log(generatedWordArray.sort(), 'generated word array')
+    // console.log(matchingLetters.sort(), 'matching letters')
 
     // let generatedWordSorted = this.state.generatedWord.sort()
     // if (this.state.chosenLetters.sort.join('').includes(generatedWordSorted)) {
@@ -134,12 +134,12 @@ class App extends Component {
 
   render() {
     return (
-      <div key="thing">
+      <div>
         <h1>Build A Snowman</h1>
         {this.gamePrompt()}
         {this.gameCompleteHeader()}
         <div className="reset-container">{this.newGameButton()}</div>
-        <div key="other-thing">
+        <div>
           <img
             className="snowman-image"
             src={`./snowman_images/step_${this.state.snowmanStep}.png`}
@@ -165,15 +165,6 @@ class App extends Component {
                         letterClick={this.letterClick}
                         value={letter}
                       />
-
-                      // <button
-                      //   key={letterIndex}
-                      //   onClick={this.letterClick}
-                      //   disabled={this.state.chosenLetters.includes(letter)}
-                      //   value={letter}
-                      // >
-                      //   {letter}
-                      // </button>
                     )
                   })}
                 </div>
