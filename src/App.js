@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import './App.css'
 import words from './words.json'
 import Button from './Button.js'
-// import snowman_step_0 from './snowman_images/step_0.png'
-// import snowman_step_1 from './snowman_images/step_1.png'
-// import snowman_step_2 from './snowman_images/step_2.png'
-// import snowman_step_3 from './snowman_images/step_3.png'
-// import snowman_step_4 from './snowman_images/step_4.png'
-// import snowman_step_5 from './snowman_images/step_5.png'
-// import snowman_step_6 from './snowman_images/step_6.png'
-// import snowman_step_7 from './snowman_images/step_7.png'
+import snowman_step_0 from './step_0.png'
+import snowman_step_1 from './step_1.png'
+import snowman_step_2 from './step_2.png'
+import snowman_step_3 from './step_3.png'
+import snowman_step_4 from './step_4.png'
+import snowman_step_5 from './step_5.png'
+import snowman_step_6 from './step_6.png'
+import snowman_step_7 from './step_7.png'
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +24,17 @@ class App extends Component {
         ['z', 'x', 'c', 'v', 'b', 'n', 'm']
       ],
       snowmanStep: 0,
-      newGame: true
+      newGame: true,
+      snowmanImages: [
+        snowman_step_0,
+        snowman_step_1,
+        snowman_step_2,
+        snowman_step_3,
+        snowman_step_4,
+        snowman_step_5,
+        snowman_step_6,
+        snowman_step_7
+      ]
     }
   }
 
@@ -60,6 +70,7 @@ class App extends Component {
         console.log(this.state.chosenLetters)
       }
     )
+    console.log(snowman_step_0)
   }
 
   gamePrompt = () => {
@@ -142,7 +153,7 @@ class App extends Component {
         <div>
           <img
             className="snowman-image"
-            src={`./snowman_images/step_${this.state.snowmanStep}.png`}
+            src={this.state.snowmanImages[this.state.snowmanStep]}
             alt={`Snowman step ${this.state.snowmanStep}`}
           />
 
