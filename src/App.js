@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import './App.css'
 import words from './words.json'
-// import Button from './Button.js'
+import Button from './Button.js'
+// import snowman_step_0 from './snowman_images/step_0.png'
+// import snowman_step_1 from './snowman_images/step_1.png'
+// import snowman_step_2 from './snowman_images/step_2.png'
+// import snowman_step_3 from './snowman_images/step_3.png'
+// import snowman_step_4 from './snowman_images/step_4.png'
+// import snowman_step_5 from './snowman_images/step_5.png'
+// import snowman_step_6 from './snowman_images/step_6.png'
+// import snowman_step_7 from './snowman_images/step_7.png'
 
 class App extends Component {
   constructor(props) {
@@ -33,43 +41,25 @@ class App extends Component {
     console.log(`"${randomWord}" is the word of the game`)
   }
 
-  letterClick = event => {
-    this.state.chosenLetters.push(event.target.value)
+  letterClick = passedLetter => {
+    this.state.chosenLetters.push(passedLetter)
 
     let wordAsAnArray = this.state.generatedWord.split('')
     wordAsAnArray.map(letter => {
-      if (event.target.value === letter) {
+      if (passedLetter === letter) {
         this.setSnowmanImage()
       }
     })
 
     this.setState(
       {
-        chosenLetters: this.state.chosenLetters
+        chosenLetters: this.state.chosenLetters,
+        newGame: false
       },
       () => {
         console.log(this.state.chosenLetters)
       }
     )
-
-    this.setState({
-      newGame: false
-    })
-
-    // // this.state.chosenLetters.push(event.target.value)
-    // let wordAsAnArray = this.state.generatedWord.split('')
-    // wordAsAnArray.map(letter => {
-    //   if (event.target.value === letter) {
-    //     this.setSnowmanImage()
-    //     this.state.correctLetters.push(this.state.generatedWord.indexOf(letter), 1, letter)
-    //   }
-    // })
-    // console.log(this.state.correctLetters)
-    // this.setState({
-    //   correctLetters: this.state.correctLetters,
-    //   newGame: false
-    // })
-    // this.gamePrompt()
   }
 
   gamePrompt = () => {
@@ -87,8 +77,12 @@ class App extends Component {
   }
 
   gameCompleteHeader = () => {
-    let completedWord = this.state.chosenLetters
-    if (this.state.generatedWord === completedWord.join('')) {
+    let generatedWordArray = this.state.generatedWord.split('')
+    let matchingLetters = this.state.chosenLetters.filter(letter => {
+      return this.state.generatedWord.includes(letter)
+    })
+
+    if (matchingLetters.sort().join('') === generatedWordArray.sort().join('')) {
       return (
         <p key="game-complete" className="game-complete-header">
           Hey, you did it!
@@ -98,14 +92,35 @@ class App extends Component {
   }
 
   newGameButton = () => {
-    let completedWord = this.state.chosenLetters
-    if (this.state.generatedWord === completedWord.join('')) {
+    let generatedWordArray = this.state.generatedWord.split('')
+    let matchingLetters = this.state.chosenLetters.filter(letter => {
+      return this.state.generatedWord.includes(letter)
+    })
+
+    if (matchingLetters.sort().join('') === generatedWordArray.sort().join('')) {
       return (
         <button key="play-again" onClick={this.resetGame} className="new-game-button">
           Play Again
         </button>
       )
     }
+    console.log(`${matchingLetters} is a match`)
+    console.log(generatedWordArray.sort(), 'generated word array')
+    console.log(matchingLetters.sort(), 'matching letters')
+
+    // let generatedWordSorted = this.state.generatedWord.sort()
+    // if (this.state.chosenLetters.sort.join('').includes(generatedWordSorted)) {
+    //   console.log('All letters received')
+    // }
+
+    // let completedWord = this.state.chosenLetters
+    // if (this.state.generatedWord === completedWord.join('')) {
+    //   return (
+    //     <button key="play-again" onClick={this.resetGame} className="new-game-button">
+    //       Play Again
+    //     </button>
+    //   )
+    // }
   }
 
   resetGame = () => {
@@ -119,12 +134,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div key="thing">
         <h1>Build A Snowman</h1>
         {this.gamePrompt()}
         {this.gameCompleteHeader()}
         <div className="reset-container">{this.newGameButton()}</div>
-        <div>
+        <div key="other-thing">
           <img
             className="snowman-image"
             src={`./snowman_images/step_${this.state.snowmanStep}.png`}
@@ -144,14 +159,21 @@ class App extends Component {
                 <div key={rowIndex}>
                   {row.map((letter, letterIndex) => {
                     return (
-                      <button
+                      <Button
                         key={letterIndex}
-                        onClick={this.letterClick}
                         disabled={this.state.chosenLetters.includes(letter)}
+                        letterClick={this.letterClick}
                         value={letter}
-                      >
-                        {letter}
-                      </button>
+                      />
+
+                      // <button
+                      //   key={letterIndex}
+                      //   onClick={this.letterClick}
+                      //   disabled={this.state.chosenLetters.includes(letter)}
+                      //   value={letter}
+                      // >
+                      //   {letter}
+                      // </button>
                     )
                   })}
                 </div>
