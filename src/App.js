@@ -115,23 +115,6 @@ class App extends Component {
         </button>
       )
     }
-    // console.log(`${matchingLetters} is a match`)
-    // console.log(generatedWordArray.sort(), 'generated word array')
-    // console.log(matchingLetters.sort(), 'matching letters')
-
-    // let generatedWordSorted = this.state.generatedWord.sort()
-    // if (this.state.chosenLetters.sort.join('').includes(generatedWordSorted)) {
-    //   console.log('All letters received')
-    // }
-
-    // let completedWord = this.state.chosenLetters
-    // if (this.state.generatedWord === completedWord.join('')) {
-    //   return (
-    //     <button key="play-again" onClick={this.resetGame} className="new-game-button">
-    //       Play Again
-    //     </button>
-    //   )
-    // }
   }
 
   resetGame = () => {
