@@ -55,7 +55,7 @@ class App extends Component {
     this.state.chosenLetters.push(passedLetter)
 
     let wordAsAnArray = this.state.generatedWord.split('')
-    wordAsAnArray.map(letter => {
+    wordAsAnArray.forEach(letter => {
       if (passedLetter === letter) {
         this.setSnowmanImage()
       }
@@ -158,9 +158,9 @@ class App extends Component {
           />
 
           <p className="word">
-            {this.state.generatedWord.split('').map(letter => {
+            {this.state.generatedWord.split('').map((letter, index) => {
               let letterToShow = this.state.chosenLetters.includes(letter) ? letter : '_'
-              return <span key="letter-to-show">{letterToShow.toUpperCase()}</span>
+              return <span key={index}>{letterToShow.toUpperCase()}</span>
             })}
           </p>
 
