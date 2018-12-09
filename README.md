@@ -1,6 +1,6 @@
 # Reactified Snowman
 
-<p>
+<p align="center">
 <img src="https://github.com/TobiasNorton/reactified-snowman/blob/master/src/Snowman.gif?raw=true" alt="Build-A-Snowman game"/>
 </p>
 
